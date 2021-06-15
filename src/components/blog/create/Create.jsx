@@ -12,11 +12,50 @@ import * as yup from "yup";
 import "./Create.css";
 
 const Create = () => {
-    return ( 
-        <div className="col-md-5 mt-5">
-            <p>Create Blog</p>
+  return (
+    <div className="container">
+      <div id="card-edit" className="card p-4">
+        <div className="card-body">
+          <h5 className="text-center mb-3">EDIT BLOG</h5>
+          {/* <form onSubmit={handleSubmit(onSubmit)}>
+            <label>Título</label>
+            <input
+              type="text"
+              name="titleBlog"
+              {...register("titleBlog")}
+              placeholder="Título..."
+              className="form-control"
+            />
+            <p className="text-center">
+              <span className="small text-danger">
+                {errors.titleBlog?.message}
+              </span>
+            </p>
+
+            <label>Contenido</label>
+            <textarea
+              name="bodyBlog"
+              {...register("bodyBlog")}
+              rows="10"
+              cols="50"
+              className="form-control"
+            >
+              Write something here
+            </textarea>
+            <p className="text-center">
+              <span className="small text-danger">
+                {errors.bodyBlog?.message}
+              </span>
+            </p>
+
+            <button type="submit" className="btn btn-primary mt-1">
+              Editar
+            </button>
+          </form> */}
         </div>
-     );
-}
- 
+      </div>
+    </div>
+  );
+};
+
 export default Create;

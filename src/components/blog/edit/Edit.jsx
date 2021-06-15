@@ -32,7 +32,8 @@ const Edit = () => {
       setValue("titleBlog", res.data.title);
       setValue("bodyBlog", res.data.body);
     } catch (e) {
-      alert("Error al obtener el blog");
+      alert("Error de id para obtener el blog");
+      history.push("/home");
     }
   };
 
@@ -45,14 +46,10 @@ const Edit = () => {
     register,
     setValue,
     handleSubmit,
-    reset,
+    //reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    // defaultValues: {
-    //   concept: ""
-    //   amount: "amountDefault",
-    // }
   });
 
   const onSubmit = async (formData, e) => {
