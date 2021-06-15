@@ -15,6 +15,7 @@ const Edit = () => {
   //getting id_operation from url
   const { id } = useParams();
   const [blog, setBlog] = React.useState([]);
+  let history = useHistory();
 
   React.useEffect(() => {
     getBlog();
@@ -65,13 +66,14 @@ const Edit = () => {
         title: titleEdited,
         amount: contentEdited,
       };
-      console.log(blogEdited)
 
       try {
-        let res = await axios.post(
+        const res = await axios.post(
           'https://jsonplaceholder.typicode.com/posts', blogEdited
         );
         alert('El blog ha sido editado exitosamente!');
+        //reset(); // reset viene del useForm
+        history.push("/home");
       } catch (e) {
         alert("Error al actualizar el blog");
       }
@@ -94,7 +96,7 @@ const Edit = () => {
                 />
                 <p className="text-center">
                   <span className="small text-danger">
-                    {errors.concept?.message}
+                    {errors.titleBlog?.message}
                   </span>
                 </p>
 
