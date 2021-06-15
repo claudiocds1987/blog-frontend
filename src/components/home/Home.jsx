@@ -28,6 +28,26 @@ const Home = () => {
     getBlogs();
   }, []);
 
+  const DeleteBlog = (id) => {
+    const confirm = window.confirm("¿Realmente quiere eliminar la operación?");
+    if (confirm) {
+      try {
+        axios.delete(
+          `https://jsonplaceholder.typicode.com/posts/${id}`
+        )
+        .then(res => {
+            console.log(res);  
+            //const data = res.data;
+            const newBlogs = blogs.filter(item => item.id !== id);
+            setBlogs(newBlogs); 
+            alert('Blog borrado');
+        })
+      } catch (e) {
+        alert("Error al eliminar la operación");
+      }
+    }
+  };
+
   return (
     <div className="container">
       <h1>Hola</h1>
@@ -41,65 +61,23 @@ const Home = () => {
               </tr>
             </thead>
             <tbody>
-            {blogs.map(item => (
+              {blogs.map((item) => (
                 <tr key={item.id} className="text-center align-middle">
                   <td>{item.title}</td>
                   <td>
                     <button className="btn btn-info">Info</button>
                     <button className="btn btn-warning">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        DeleteBlog(item.id);
+                      }}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
-             ))
-            }
-              {/* {blogs.map((item) => {
-                <tr key={item.id} className="text-center align-middle">
-                  <td>{item.title}</td>
-                  <td>
-                    <button className="btn btn-info">Info</button>
-                    <button className="btn btn-warning">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
-                  </td>
-                </tr>
-              })} */}
-
-              {/* <tr>
-                <td> aca el titulo del blog</td>
-                <td>
-                  <button className="btn btn-info">Edit</button>
-                  <button className="btn btn-danger">Delete</button>
-                </td>
-              </tr> */}
-              {/* {stateFilter
-                .slice(pagesVisited, pagesVisited + itemsPerPage)
-                .map((item) => (
-                  <tr key={cont++} className="text-center align-middle">
-                    <td>{moment(item.date).format("DD/MM/YYYY")}</td>
-                    <td>{item.concept}</td>
-                    <td>{item.amount}</td>
-                    <td>{item.type}</td>
-                    <td>{item.category}</td>
-                    <div className="text-center">
-                      <button
-                        className="btn btn-primary"
-                        //to="/EditOperation"
-                        onClick={() => {
-                          history.push(`/editOperation/${item.id_operation}`);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => {
-                          Delete(item.id_operation, item.amount, item.type);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                    </div>
-                  </tr>
-                ))} */}
+              ))}
             </tbody>
           </Table>
         </div>
