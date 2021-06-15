@@ -65,8 +65,8 @@ const Edit = () => {
       };
 
       try {
-        const res = await axios.post(
-          'https://jsonplaceholder.typicode.com/posts', blogEdited
+        const res = await axios.put(
+          `https://jsonplaceholder.typicode.com/posts/${id}`, blogEdited
         );
         alert('El blog ha sido editado exitosamente!');
         //reset(); // reset viene del useForm
@@ -74,7 +74,6 @@ const Edit = () => {
       } catch (e) {
         alert("Error al actualizar el blog");
       }
-
   };
 
   return (
@@ -105,7 +104,6 @@ const Edit = () => {
                   cols="50"
                   className="form-control"
                 >
-                  Write something here
                 </textarea>
                 <p className="text-center">
                   <span className="small text-danger">
