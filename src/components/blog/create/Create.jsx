@@ -21,7 +21,6 @@ const Create = () => {
 
   const {
     register,
-    setValue,
     handleSubmit,
     //reset,
     formState: { errors },

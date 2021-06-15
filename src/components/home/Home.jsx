@@ -51,7 +51,6 @@ const Home = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Hola</h1>
       <div id="secondary-container">
         <div className="table-responsive">
           <Table striped bordered hover variant="dark" size="sm">
