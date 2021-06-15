@@ -37,7 +37,7 @@ const Edit = () => {
 
   const schema = yup.object().shape({
     titleBlog: yup.string().required("Campo obligatorio"),
-    bodyBlog: yup.number().required("Campo obligatorio"),
+    bodyBlog: yup.string().required("Campo obligatorio"),
   });
 
   const {
@@ -54,8 +54,28 @@ const Edit = () => {
     // }
   });
 
-  const onSubmit = (formData, e) => {
-    console.log("ON SUBMIT");
+  const onSubmit = async (formData, e) => {
+      e.preventDefault();
+      const titleEdited = formData.titleBlog;  
+      const contentEdited = formData.bodyBlog;
+      // object
+      const blogEdited = {
+        userId: blog.userId,
+        id: parseInt(id),
+        title: titleEdited,
+        amount: contentEdited,
+      };
+      console.log(blogEdited)
+
+      try {
+        let res = await axios.post(
+          'https://jsonplaceholder.typicode.com/posts', blogEdited
+        );
+        alert('El blog ha sido editado exitosamente!');
+      } catch (e) {
+        alert("Error al actualizar el blog");
+      }
+
   };
 
   return (
@@ -63,7 +83,7 @@ const Edit = () => {
         <div id="card-edit" className="card p-4">
           <div className="card-body">
             <h5 className="text-center mb-3">EDIT BLOG</h5>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Título</label>
                 <input
                   type="text"
