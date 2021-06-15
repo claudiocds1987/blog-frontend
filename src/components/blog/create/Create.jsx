@@ -1,8 +1,7 @@
 import React from "react";
+import axios from "axios";
 // npm install react-router-dom
 import { useHistory } from "react-router-dom";
-// spinner loader
-import { Spinner } from "react-bootstrap";
 // npm install react-hook-form
 import { useForm } from "react-hook-form";
 // npm install @hookform/resolvers yup (para las validaciones)
@@ -12,12 +11,49 @@ import * as yup from "yup";
 import "./Create.css";
 
 const Create = () => {
+
+  let history = useHistory();
+
+  const schema = yup.object().shape({
+    titleBlog: yup.string().required("Campo obligatorio"),
+    bodyBlog: yup.string().required("Campo obligatorio"),
+  });
+
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    //reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (formData, e) => {
+    e.preventDefault();
+    // object
+    const blog = {
+      title: formData.titleBlog,
+      amount: formData.bodyBlog,
+    };
+    try {
+      const res = await axios.post(
+        'https://jsonplaceholder.typicode.com/posts', blog
+      );
+      alert('El blog ha sido creado exitosamente!');
+      history.push("/home");
+    } catch (e) {
+      alert("Error al intentar crear el blog");
+    }
+
+};
+
   return (
     <div className="container">
       <div id="card-edit" className="card p-4">
         <div className="card-body">
-          <h5 className="text-center mb-3">EDIT BLOG</h5>
-          {/* <form onSubmit={handleSubmit(onSubmit)}>
+          <h5 className="text-center mb-3">CREAR BLOG</h5>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label>Título</label>
             <input
               type="text"
@@ -40,7 +76,6 @@ const Create = () => {
               cols="50"
               className="form-control"
             >
-              Write something here
             </textarea>
             <p className="text-center">
               <span className="small text-danger">
@@ -49,9 +84,9 @@ const Create = () => {
             </p>
 
             <button type="submit" className="btn btn-primary mt-1">
-              Editar
+              Crear
             </button>
-          </form> */}
+          </form>
         </div>
       </div>
     </div>
