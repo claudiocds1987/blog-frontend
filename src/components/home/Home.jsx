@@ -4,8 +4,6 @@ import axios from "axios";
 import { Table, Form } from "react-bootstrap";
 // npm install react-router-dom
 import { useHistory } from "react-router-dom";
-// npm install moment --save to format date
-import moment from "moment";
 
 // css
 import "./Home.css";
@@ -33,16 +31,15 @@ const Home = () => {
     const confirm = window.confirm("¿Realmente quiere eliminar la operación?");
     if (confirm) {
       try {
-        axios.delete(
-          `https://jsonplaceholder.typicode.com/posts/${id}`
-        )
-        .then(res => {
-            console.log(res);  
+        axios
+          .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+          .then((res) => {
+            console.log(res);
             //const data = res.data;
-            const newBlogs = blogs.filter(item => item.id !== id);
-            setBlogs(newBlogs); 
-            alert('Blog borrado');
-        })
+            const newBlogs = blogs.filter((item) => item.id !== id);
+            setBlogs(newBlogs);
+            alert("Blog borrado");
+          });
       } catch (e) {
         alert("Error al eliminar la operación");
       }
@@ -51,6 +48,7 @@ const Home = () => {
 
   return (
     <div className="container mt-5">
+      <h3>Listado de blogs</h3>
       <div id="secondary-container">
         <div className="table-responsive">
           <Table striped bordered hover variant="dark" size="sm">
@@ -65,13 +63,21 @@ const Home = () => {
                 <tr key={item.id} className="text-center align-middle">
                   <td>{item.title}</td>
                   <td>
-                    <button className="btn btn-info">Info</button>
-                    <button className="btn btn-warning"
-                        onClick={() => {
-                            history.push(`/edit/${item.id}`);
-                        }}
+                    <button
+                      className="btn btn-info"
+                      onClick={() => {
+                        history.push(`/detail/${item.id}`);
+                      }}
                     >
-                        Edit
+                      Info
+                    </button>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => {
+                        history.push(`/edit/${item.id}`);
+                      }}
+                    >
+                      Edit
                     </button>
                     <button
                       className="btn btn-danger"

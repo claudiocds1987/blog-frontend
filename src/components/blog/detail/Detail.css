@@ -1,0 +1,9 @@
+#card-detail{
+    margin: 0 auto;
+}
+
+@media (min-width: 700px) { 
+    #card-detail{
+        width: 550px;
+    }
+}

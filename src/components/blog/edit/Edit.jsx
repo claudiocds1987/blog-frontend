@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 // npm install react-router-dom
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 // npm install react-hook-form
 import { useForm } from "react-hook-form";
 // npm install @hookform/resolvers yup (para las validaciones)
