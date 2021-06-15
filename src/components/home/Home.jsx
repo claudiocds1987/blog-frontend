@@ -12,6 +12,7 @@ import "./Home.css";
 
 const Home = () => {
   const [blogs, setBlogs] = React.useState([]);
+  let history = useHistory();
 
   const getBlogs = async () => {
     try {
@@ -49,7 +50,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <h1>Hola</h1>
       <div id="secondary-container">
         <div className="table-responsive">
@@ -66,7 +67,13 @@ const Home = () => {
                   <td>{item.title}</td>
                   <td>
                     <button className="btn btn-info">Info</button>
-                    <button className="btn btn-warning">Edit</button>
+                    <button className="btn btn-warning"
+                        onClick={() => {
+                            history.push(`/edit/${item.id}`);
+                        }}
+                    >
+                        Edit
+                    </button>
                     <button
                       className="btn btn-danger"
                       onClick={() => {

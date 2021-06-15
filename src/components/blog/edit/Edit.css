@@ -1,0 +1,10 @@
+
+#card-edit{
+    margin:0 auto;
+}
+
+@media (min-width: 700px) { 
+    #card-edit{
+        width: 400px;
+    }
+}
