@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import Create from "./components/blog/create/Create";
@@ -12,18 +12,15 @@ function App() {
   return (
     <Router>
       <Header />
-      <div className="box"> 
-        
+      <div className="box-general">
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/home" component={Home}></Route>
         <Route exact path="/create" component={Create}></Route>
         <Route exact path="/edit/:id" component={Edit}></Route>
         <Route exact path="/detail/:id" component={Detail}></Route>
-        
       </div>
       <Footer />
     </Router>
-   
   );
 }
 

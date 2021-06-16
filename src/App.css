@@ -1,6 +1,8 @@
-.box {
+.box-general {
   min-height: 100vh;
-  margin-top: 60px;
+  /* margin-top: 80px; ok*/
+  display:flex;
+  align-items: center;
   /* background: #8fe0f5; */
   background:linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
 }

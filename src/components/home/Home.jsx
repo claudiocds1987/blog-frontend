@@ -1,10 +1,9 @@
 import React from "react";
 // axios
 import axios from "axios";
-import { Table, Form } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 // npm install react-router-dom
 import { useHistory } from "react-router-dom";
-
 // css
 import "./Home.css";
 
@@ -35,7 +34,6 @@ const Home = () => {
           .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
           .then((res) => {
             console.log(res);
-            //const data = res.data;
             const newBlogs = blogs.filter((item) => item.id !== id);
             setBlogs(newBlogs);
             alert("Blog borrado");
@@ -48,50 +46,52 @@ const Home = () => {
 
   return (
     <div className="container mt-5">
-      <h3>Listado de blogs</h3>
-      <div id="secondary-container">
-        <div className="table-responsive">
-          <Table striped bordered hover variant="dark" size="sm">
-            <thead>
-              <tr className="text-center">
-                <th>Título</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {blogs.map((item) => (
-                <tr key={item.id} className="text-center align-middle">
-                  <td>{item.title}</td>
-                  <td>
-                    <button
-                      className="btn btn-info"
-                      onClick={() => {
-                        history.push(`/detail/${item.id}`);
-                      }}
-                    >
-                      Info
-                    </button>
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => {
-                        history.push(`/edit/${item.id}`);
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        DeleteBlog(item.id);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
+      <div class="box-home">
+        <h3>Listado de blogs</h3>
+        <div id="secondary-container">
+          <div className="table-responsive">
+            <Table striped bordered hover variant="dark" size="sm">
+              <thead>
+                <tr className="text-center">
+                  <th>Título</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {blogs.map((item) => (
+                  <tr key={item.id} className="text-center align-middle">
+                    <td>{item.title}</td>
+                    <td>
+                      <button
+                        className="btn btn-info"
+                        onClick={() => {
+                          history.push(`/detail/${item.id}`);
+                        }}
+                      >
+                        Info
+                      </button>
+                      <button
+                        className="btn btn-warning"
+                        onClick={() => {
+                          history.push(`/edit/${item.id}`);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          DeleteBlog(item.id);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
         </div>
       </div>
     </div>

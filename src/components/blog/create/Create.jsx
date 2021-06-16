@@ -49,7 +49,7 @@ const Create = () => {
 
   return (
     <div className="container">
-      <div id="card-edit" className="card p-4">
+      <div id="card-create" className="card p-4">
         <div className="card-body">
           <h5 className="text-center mb-3">CREAR BLOG</h5>
           <form onSubmit={handleSubmit(onSubmit)}>
